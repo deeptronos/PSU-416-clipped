@@ -9,14 +9,8 @@ const spec: hound::WavSpec = hound::WavSpec {
     bits_per_sample: 16,
     sample_format: hound::SampleFormat::Int,
 };
-fn write_sin() {
-    // let spec = hound::WavSpec {
-    //     channels: 1,
-    //     sample_rate: 48000,
-    //     bits_per_sample: 16,
-    //     sample_format: hound::SampleFormat::Int,
-    // };
 
+fn write_sin() {
     let mut writer = hound::WavWriter::create("sine.wav", spec).unwrap();
     for t in (0..48000).map(|x| x as f32 / 48000.0) {
         let sample = (t * 440.0 * 2.0 * PI).sin();
