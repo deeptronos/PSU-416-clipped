@@ -1,7 +1,6 @@
 use rodio::{source::Source, Decoder, OutputStream};
 use std::f32::consts::PI;
 use std::fs::File;
-use std::i16;
 use std::io::BufReader;
 
 const spec: hound::WavSpec = hound::WavSpec {
