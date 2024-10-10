@@ -1,6 +1,9 @@
 use hound;
+use rodio::{source::Source, Decoder, OutputStream};
 use std::f32::consts::PI;
+use std::fs::File;
 use std::i16;
+use std::io::BufReader;
 
 const spec: hound::WavSpec = hound::WavSpec {
     channels: 1,
@@ -39,7 +42,20 @@ fn write_clipped() {
     writer.finalize().unwrap();
 }
 
+fn play_clipped() {
+    let (_stream, stream_handle) = OutputStream::try_default().unwrap();
+    let file = BufReader::new(File::open("clipped.wav").unwrap());
+    let source = Decoder::new(file).unwrap();
+    stream_handle
+        .play_raw(source.convert_samples())
+        .expect("Error while playing raw");
+
+    // Keep main thread alive while seperate audio thread plays.
+    std::thread::sleep(std::time::Duration::from_secs(5));
+}
+
 fn main() {
     write_sin();
     write_clipped();
+    play_clipped();
 }
