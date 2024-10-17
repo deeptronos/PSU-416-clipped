@@ -1,2 +1,7 @@
 # Clipped
+## Catherine N 2024
 Let's build some code to interact with your audio system!
+
+
+For this assignment, I created an application in Rust that used the Hound library to encode a couple of WAV files. This was my first time working with Hound (first time doing anything related to audio in Rust, as well) but the library made this process fairly effortless. In fact, while reading the Hound documentation I noticed that the first example they provide was code that would complete half of this assignment (writing a 440hz sine wave to a WAV). Since this example was provided by the docs, I felt that there wasn't any violation of academic integrity in choosing to base my code upon this. After I was authoring the first WAV correctly, I duplicated the code and modified it slightly to also export the second required WAV. These modifications were a bit tricky at first - I got a little confused by the distinction between the time-dependent nature of `sample` and the constant value represented by `amplitude` - but once I played with the code a bit, I cleared things up for myself and was able to easily produce the clipped audio file, too.
+Going forward, I could imagine adding command-line parsing to this program so that a user can specify Hz, level of clipping, and even wave-form shape when executing the program. This would make it more versatile than the hard-coded sound parameters the program relies on presently.
